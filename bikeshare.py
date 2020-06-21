@@ -14,7 +14,7 @@ days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday','
     #function for parsing filters
 def get_filters():
     """
-    Asks user to specify a city, month, and day to analyze.
+    Requests user to specify a city, month, and day to analyze.
 
     Returns:
         (str) city - name of the city to analyze
@@ -35,7 +35,7 @@ def get_filters():
         print("Invalid input")
         month = input("Enter the month :choices are {}\n".format(months)).lower()
         continue
-    
+
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     day = input("Enter the day :choices are {}\n".format(days)).lower()
     while day not in days:
@@ -74,7 +74,7 @@ def load_data(city, month, day):
         # use the index of the months list to get the corresponding int
         months = ['january', 'february', 'march', 'april', 'may', 'june']
         month = months.index(month)+1
-    
+
         # filter by month to create the new dataframe
         df = df.loc[df['month'] == month]
 
@@ -82,7 +82,7 @@ def load_data(city, month, day):
     if day != 'all':
         # filter by day of week to create the new dataframe
         df = df.loc[df['day'] == day.title()]
-    
+
     return df
 
         #define function for time stats
@@ -103,7 +103,7 @@ def time_stats(df):
     # TO DO: display the most common start hour
     df['hour'] = df['Start Time'].dt.hour
     common_start_hour = df['hour'].mode()[0]
-    
+
     print("\nThe common month, day and start hour respectively is ",common_month,common_day,common_start_hour)
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -126,7 +126,7 @@ def station_stats(df):
     # TO DO: display most frequent combination of start station and end station trip
     df['combined_station'] = df['Start Station'] + df['End Station']
     common_combined_station = df['combined_station'].mode()[0]
-    
+
     print("\nThe common start station is", common_start_station)
     print("\nThe common end station is", common_end_station)
     print("\nThe common combined station is", common_combined_station)
@@ -148,7 +148,7 @@ def trip_duration_stats(df):
 
     # TO DO: display mean travel time
     mean_travel_time = df['Trip Duration'].mean()
-    
+
     print('\nThe total travel time is',total_travel_time)
     print('\nThe mean travel time is',mean_travel_time)
 
@@ -174,20 +174,20 @@ def user_stats(df):
         gender_count = df['Gender'].value_counts()
     except KeyError:
         gender_count = 'none (due to no data)'
-        
+
 
     # TO DO: Display earliest, most recent, and most common year of birth
     try:
         earliest_birth_year = df['Birth Year'].min()
-    
+
         recent_birth_year = df['Birth Year'].max()
-    
+
         common_birth_year = df['Birth Year'].mode()
     except KeyError:
         earliest_birth_year = 'none (due to no data)'
         recent_birth_year = 'none (due to no data)'
         common_birth_year = 'none (due to no data)'
-        
+
     print('\nThe user type is',user_type)
     print('\nThe gender_count is',gender_count)
     print('\nThe earliest birth year is',earliest_birth_year)
@@ -195,9 +195,9 @@ def user_stats(df):
     print('\nThe common birth year is',common_birth_year)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-'*40)       
-    
-    #define main function 
+    print('-'*40)
+
+    #define main function
 def main():
     while True:
         city, month, day = get_filters()
@@ -206,11 +206,11 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
-        
+
         print('Hello! Let\'s explore some US bikeshare raw data!')
         #To get inputs (yes/no) from the user to view 5 lines of raw data per every confirmation.
         #Initial value of 0 for printing raw data - per requirement
-        
+
         a = 0;
         #User to enter a number for viewing raw data
         try:
@@ -219,7 +219,7 @@ def main():
             b=5
             #to improve speed of the process - defaulting value to 5 per requirement
             print("Invalid input. Default value set to 5")
-            
+
         while True:
             sample_data = input("Do you want to view sample raw data? Enter yes or no.\n")
             if sample_data.lower() =='yes':
@@ -228,8 +228,8 @@ def main():
                 b+=5
             else:
                 break
-                
-         #Option to restart the program       
+
+         #Option to restart the program
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
