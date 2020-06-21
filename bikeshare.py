@@ -14,7 +14,7 @@ days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday','
     #function for parsing filters
 def get_filters():
     """
-    Asks user to specify a city, month, and day to perform analysis.
+    Requests user to specify a city, month, and day to analyze.
 
     Returns:
         (str) city - name of the city to analyze
@@ -221,7 +221,7 @@ def main():
             print("Invalid input. Default value set to 5")
 
         while True:
-            sample_data = input("Do you want to view sample raw data? Enter yes or no.\n")
+            sample_data = input("Do you want to view sample raw data for analysis? Enter yes or no.\n")
             if sample_data.lower() =='yes':
                 print(df.iloc[a:b])
                 a+=5
@@ -229,7 +229,7 @@ def main():
             else:
                 break
 
-         #Option to restart the program based on user inputs
+         #Option to restart the program
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
