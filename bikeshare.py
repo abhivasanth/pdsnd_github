@@ -221,7 +221,7 @@ def main():
             print("Invalid input. Default value set to 5")
 
         while True:
-            sample_data = input("Do you want to view sample raw data? Enter yes or no.\n")
+            sample_data = input("Do you want to view sample raw data for analysis? Enter yes or no.\n")
             if sample_data.lower() =='yes':
                 print(df.iloc[a:b])
                 a+=5
